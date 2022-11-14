@@ -1,6 +1,7 @@
 <template>
     <div class="select-btn">
-        <select name="" id="">
+        <select name="options" id="">
+            <option value="" disabled selected hidden>Select</option>
             <option value="1">Test</option>
         </select>
     </div>
@@ -18,6 +19,7 @@ export default {
 
     select {
         padding: 8px 32px;
+        margin: 0 10px;
         border-radius: 6px;
         border: 0px;
 

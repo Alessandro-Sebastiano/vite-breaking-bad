@@ -1,0 +1,71 @@
+<template>
+    <div class="card">
+        <div class="card-image">
+            <img :src="img" :alt="name">
+        </div>
+        <div class="character">
+            <h4>{{ name }}</h4>
+            <div class="info">
+                <span>{{ category }}</span>
+                <span>{{ status }}</span>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import { onMounted } from 'vue';
+
+export default {
+    name: 'CardComponent',
+    props: ['img', 'name', 'status', 'category'],
+
+    mounted() {
+        console.log(this.img)
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+@use '../assets/partials/variables' as *;
+
+.card {
+    width: calc((100% / 5) - 20px);
+    min-width: 115px;
+    margin: 10px;
+    background-color: $background;
+    padding: 16px;
+    text-align: center;
+}
+
+.card-image {
+    width: 100%;
+
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+
+.character {
+    text-align: center;
+
+    h4 {
+        margin: 26px 0;
+    }
+}
+
+
+.info {
+
+    span {
+        color: $grey;
+        display: block;
+        margin: 6px 0;
+    }
+
+}
+</style>

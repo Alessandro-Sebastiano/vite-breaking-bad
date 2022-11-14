@@ -18,7 +18,8 @@ export default {
     HeaderComponent,
     SelectComponent,
     CardsBox,
-  }
+  },
+
 }
 </script>
 
@@ -26,7 +27,7 @@ export default {
 @use './assets/partials/variables' as *;
 
 .main-content {
-  width: 70%;
+  width: 75%;
   height: 50px;
   margin: 38px auto;
 }
