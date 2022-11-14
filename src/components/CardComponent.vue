@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
 
 export default {
     name: 'CardComponent',
@@ -31,7 +30,8 @@ export default {
 
 .card {
     width: calc((100% / 5) - 20px);
-    min-width: 115px;
+    height: 512px;
+    min-width: 180px;
     margin: 10px;
     background-color: $background;
     padding: 16px;
@@ -44,7 +44,8 @@ export default {
 
     img {
         width: 100%;
-        height: auto;
+        height: 100%;
+        object-fit: cover;
         display: block;
     }
 }

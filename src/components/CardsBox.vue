@@ -1,6 +1,6 @@
 <template>
     <div class="cards-container">
-        <CharacterFound />
+        <CharacterFound :num="numOfCharacter" />
         <div class="cards-box">
             <CardComponent v-for="(card, index) in charactersArray" :img="card.img" :name="card.name"
                 :status="card.status" :category="card.category" />
@@ -24,6 +24,7 @@ export default {
         return {
             api: 'https://www.breakingbadapi.com/api/characters',
             charactersArray: [],
+            numOfCharacter: '',
         }
     },
 
@@ -32,6 +33,7 @@ export default {
         getCharacters() {
             axios.get(this.api).then((response) => {
                 this.charactersArray = { ...response.data };
+                this.numOfCharacter = response.data.length;
             })
         }
     },
