@@ -1,15 +1,15 @@
 <template>
     <div class="cards-container">
-        <CharacterFound :num="numOfCharacter" />
+        <CharacterFound />
         <div class="cards-box">
-            <CardComponent v-for="(card, index) in charactersArray" :img="card.img" :name="card.name"
+            <CardComponent v-for="(card, index) in store.charactersArray" :img="card.img" :name="card.name"
                 :status="card.status" :category="card.category" />
         </div>
     </div>
 </template>
 
 <script>
-import axios from 'axios';
+import { store } from '../store';
 import CharacterFound from './CharacterFound.vue';
 import CardComponent from './CardComponent.vue';
 
@@ -22,25 +22,10 @@ export default {
 
     data() {
         return {
-            api: 'https://www.breakingbadapi.com/api/characters',
-            charactersArray: [],
-            numOfCharacter: '',
+            store,
         }
     },
 
-
-    methods: {
-        getCharacters() {
-            axios.get(this.api).then((response) => {
-                this.charactersArray = { ...response.data };
-                this.numOfCharacter = response.data.length;
-            })
-        }
-    },
-
-    created() {
-        this.getCharacters();
-    }
 }
 </script>
 
@@ -58,7 +43,7 @@ export default {
 .cards-box {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
 }
 </style>

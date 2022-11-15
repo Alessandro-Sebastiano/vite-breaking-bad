@@ -19,9 +19,6 @@ export default {
     name: 'CardComponent',
     props: ['img', 'name', 'status', 'category'],
 
-    mounted() {
-        console.log(this.img)
-    }
 }
 </script>
 
