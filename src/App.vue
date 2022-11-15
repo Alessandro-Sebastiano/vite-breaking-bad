@@ -2,7 +2,14 @@
   <HeaderComponent />
   <div class="main-content">
     <SelectComponent @currentSeries="getCharacters()" />
-    <CardsBox :charList="store.charactersArray" />
+    <CardsBox v-if="changeTest" :charList="store.charactersArray" />
+    <div class="loading" v-else>
+      <h2>Loading
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+      </h2>
+    </div>
   </div>
 </template>
 
@@ -33,7 +40,7 @@ export default {
     getCharacters() {
       let composedApi = this.store.api;
       if (this.store.selectedSeries && this.store.selectedSeries != 'Default') {
-        composedApi = composedApi + '?category=' + this.store.selectedSeries;
+        composedApi += '?category=' + this.store.selectedSeries;
       }
       axios.get(composedApi).then((response) => {
         this.store.charactersArray = { ...response.data };
@@ -44,6 +51,17 @@ export default {
 
   created() {
     this.getCharacters();
+  },
+
+
+  computed: {
+    changeTest() {
+      if (this.store.numOfChar > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 
 }
@@ -56,5 +74,48 @@ export default {
   width: 75%;
   height: 50px;
   margin: 38px auto;
+}
+
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  h2 {
+
+    span {
+      margin: 0px 2px;
+      animation: testdot 0.6s infinite ease-in-out;
+      opacity: 0;
+
+      &:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+    }
+
+
+    @keyframes testdot {
+
+      0% {
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
+
+      100% {
+        opacity: 1;
+      }
+
+    }
+
+  }
 }
 </style>
