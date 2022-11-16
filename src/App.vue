@@ -2,17 +2,18 @@
   <HeaderComponent />
   <div class="main-content">
     <SelectComponent @currentSeries="getCharacters()" />
-    <CardsBox v-if="changeTest" :charList="store.charactersArray" />
-    <div class="loading" v-else>
-      <h2>Loading
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
-      </h2>
-    </div>
+    <Transition name="bounce">
+      <CardsBox v-if="changeTest" :charList="store.charactersArray" />
+      <div class="loading" v-else>
+        <h2>Loading
+          <span>.</span>
+          <span>.</span>
+          <span>.</span>
+        </h2>
+      </div>
+    </Transition>
   </div>
 </template>
-
 <script>
 import { store } from './store'
 import axios from 'axios';
@@ -117,5 +118,32 @@ export default {
     }
 
   }
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.4s;
+}
+
+.bounce-leave-active {
+  animation: bounce-in 0.4s reverse;
+}
+
+@keyframes bounce-in {
+
+  0% {
+    scale: 0;
+    opacity: 0;
+  }
+
+  50% {
+    scale: 0.5;
+    opacity: 0.5;
+  }
+
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+
 }
 </style>
